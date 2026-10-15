@@ -44,6 +44,9 @@ export const ProjectModal = ({ project, onClose }) => {
         />
 
         <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-modal-title"
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -71,7 +74,7 @@ export const ProjectModal = ({ project, onClose }) => {
               </span>
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-display font-extrabold text-ink-light dark:text-ink-dark tracking-tight">
+            <h2 id="project-modal-title" className="text-3xl md:text-5xl font-display font-extrabold text-ink-light dark:text-ink-dark tracking-tight">
               {project.title}
             </h2>
 

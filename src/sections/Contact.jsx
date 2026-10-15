@@ -88,11 +88,14 @@ export const Contact = () => {
 
             {/* Message Preview */}
             <div className="space-y-2">
-              <span className="text-xs font-mono font-bold text-ink-light dark:text-ink-dark uppercase block">
+              <label htmlFor="custom-whatsapp-message" className="text-xs font-mono font-bold text-ink-light dark:text-ink-dark uppercase block">
                 02. Customize Your Message:
-              </span>
+              </label>
               <textarea
+                id="custom-whatsapp-message"
+                name="custom-whatsapp-message"
                 rows={3}
+                aria-label="Custom WhatsApp project inquiry message"
                 value={customMessage || selectedTopic.defaultText}
                 onChange={(e) => setCustomMessage(e.target.value)}
                 className="w-full p-4 rounded-2xl bg-paper-light dark:bg-paper-dark border border-border-light dark:border-border-dark text-xs md:text-sm text-ink-light dark:text-ink-dark focus:outline-none focus:border-signature resize-none"

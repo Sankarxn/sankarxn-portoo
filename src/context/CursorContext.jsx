@@ -1,32 +1,22 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
 
-const CursorContext = createContext();
+// Lightweight, zero-overhead CursorContext to satisfy existing component signatures
+// without forcing state re-renders across the whole DOM tree.
+const CursorContext = createContext({
+  cursorState: 'default',
+  cursorText: '',
+  setCursor: () => {},
+  resetCursor: () => {}
+});
 
 export const CursorProvider = ({ children }) => {
-  const [cursorState, setCursorState] = useState('default');
-  const [cursorText, setCursorText] = useState('');
-
-  const setCursor = (state, text = '') => {
-    setCursorState(state);
-    setCursorText(text);
-  };
-
-  const resetCursor = () => {
-    setCursorState('default');
-    setCursorText('');
-  };
-
   return (
-    <CursorContext.Provider value={{ cursorState, cursorText, setCursor, resetCursor }}>
+    <CursorContext.Provider value={{ cursorState: 'default', cursorText: '', setCursor: () => {}, resetCursor: () => {} }}>
       {children}
     </CursorContext.Provider>
   );
 };
 
 export const useCursor = () => {
-  const context = useContext(CursorContext);
-  if (!context) {
-    throw new Error('useCursor must be used within a CursorProvider');
-  }
-  return context;
+  return useContext(CursorContext);
 };
